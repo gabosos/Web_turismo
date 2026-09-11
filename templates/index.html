@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Viajes únicos a Japón, Islandia y África.">
+    <title>Horizonte | Descubre el mundo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% macro navigation(label) -%}
+    <div class="section-nav">
+        <nav class="nav" aria-label="{{ label }}">
+            <a class="logo-mark" href="#inicio" aria-label="Ir al inicio"></a>
+            <div class="nav-links">
+                <a href="#inicio">Inicio<small>/inicio</small></a>
+                <a href="#destinos">Destinos<small>/destinos</small></a>
+                <a href="#nosotros">Quiénes somos<small>/quienes-somos</small></a>
+                <a href="#contacto">Contactos<small>/contactos</small></a>
+            </div>
+            <a class="button button-small" href="#contacto">Contacto</a>
+        </nav>
+    </div>
+    {%- endmacro %}
+
+    <header class="site-header">{{ navigation('Navegación principal') }}</header>
+    <main>
+        <section class="hero section-width" id="inicio">
+            <div class="hero-copy">
+                <h1>Descubre el mundo<br>con nosotros</h1>
+                <p>Viajes únicos a Japón, Islandia y África.<br>Reserva tu próxima aventura hoy.</p>
+                <a class="button" href="#contacto">Reservar viaje</a>
+            </div>
+            <div class="image-frame hero-placeholder"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=85" alt="Vista nocturna de Tokio"></div>
+        </section>
+
+        <section class="section-width popular" id="experiencias">
+            <h2>Destinos populares</h2>
+            <div class="popular-grid">
+                {% for destination in destinations %}
+                <article class="popular-card">
+                    <div class="image-frame popular-image"><img src="{{ destination.image }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
+                    <div class="popular-copy"><h3>{{ destination.name if destination.id != 'kenia' else 'África' }}</h3><p>{{ destination.description }}</p></div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        <div class="black-band"></div>
+
+        <section class="section-width destinations" id="destinos">
+            <h2>Nuestros destinos</h2>
+            <p class="section-intro">Explora los destinos más fascinantes del mundo. Cada viaje es una aventura única.</p>
+            <div class="destination-list">
+                {% for destination in destinations %}
+                <article class="destination-row" id="{{ destination.id }}">
+                    <div class="image-frame destination-image"><img src="{{ destination.image }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
+                    <div class="destination-copy"><h3>{{ destination.name }}{% if destination.id == 'kenia' %}, África{% endif %}</h3><p>{{ destination.description }}</p><strong>Desde ${{ '{:,.0f}'.format(destination.price) }}</strong></div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        <div class="black-band"></div>
+
+        <section class="section-width about" id="nosotros">
+            <h2>Quiénes somos</h2>
+            <p class="section-intro">Somos una agencia de viajes apasionada por crear experiencias inolvidables.</p>
+            <div class="mission"><div class="image-frame mission-image"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=85" alt="Viajeros contemplando un paisaje" loading="lazy"></div><div class="mission-copy"><h3>Nuestra misión</h3><p>Desde 2010, hemos ayudado a miles de viajeros a descubrir los rincones más fascinantes del planeta.</p><div class="stats"><div><strong>5,000+</strong><span>Viajeros</span></div><div><strong>50+</strong><span>Destinos</span></div><div><strong>13</strong><span>Años</span></div></div></div></div>
+        </section>
+        <div class="black-band"></div>
+
+        <section class="section-width contact" id="contacto">
+            <h2>Contactos</h2>
+            <p class="section-intro">¿Tienes preguntas? Estamos aquí para ayudarte a planificar tu viaje perfecto.</p>
+            <div class="contact-grid">
+                <form id="contact-form"><label for="name">Nombre</label><input id="name" name="name" required><label for="email">Email</label><input id="email" name="email" type="email" required><label for="destination">Destino de interés</label><select id="destination" name="destination"><option value="">Selecciona un destino</option>{% for destination in destinations %}<option>{{ destination.name }}</option>{% endfor %}</select><label for="message">Mensaje</label><textarea id="message" name="message" required></textarea><button class="button" type="submit">Enviar mensaje</button><p class="form-status" role="status"></p></form>
+                <div class="contact-info"><h3>Dirección</h3><p>Calle Principal 123<br>Madrid, España</p><h3>Teléfono</h3><p>+34 900 123 456</p><h3>Email</h3><p>info@viajesagencia.com</p><h3>Horario</h3><p>Lun - Vie: 9:00 - 18:00<br>Sáb: 10:00 - 14:00</p></div>
+            </div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

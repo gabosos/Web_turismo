@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Destinos | Horizonte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="section-nav">
+            <nav class="nav" aria-label="Navegación principal">
+                <a class="logo-mark" href="{{ url_for('home') }}#inicio" aria-label="Ir al inicio"></a>
+                <div class="nav-links">
+                    <a href="{{ url_for('home') }}#inicio">Inicio<small>/inicio</small></a>
+                    <a href="{{ url_for('home') }}#destinos">Destinos<small>/destinos</small></a>
+                    <a href="{{ url_for('home') }}#nosotros">Quiénes somos<small>/quienes-somos</small></a>
+                    <a href="{{ url_for('home') }}#contacto">Contactos<small>/contactos</small></a>
+                </div>
+                <a class="button button-small" href="{{ url_for('home') }}#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+    <main class="destination-page">
+        <section class="section-width page-heading"><h1>Nuestros destinos</h1><p class="section-intro">Explora los destinos más fascinantes del mundo. Cada viaje es una aventura única.</p></section>
+        <section class="section-width destination-list">{% for destination in destinations %}<article class="destination-row reveal-target" id="{{ destination.id }}"><div class="image-frame destination-image"><img src="{{ destination.image }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div><div class="destination-copy"><h2>{{ destination.name }}{% if destination.id == 'kenia' %}, África{% endif %}</h2><p>{{ destination.description }}</p><strong>Desde ${{ '{:,.0f}'.format(destination.price) }}</strong><a class="text-link" href="{{ url_for('home') }}#contacto">Quiero conocerlo</a></div></article>{% endfor %}</section>
+    </main>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
