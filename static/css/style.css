@@ -39,7 +39,7 @@ h2 { margin-bottom: 32px; font-size: 38px; letter-spacing: -.8px; }
 .popular-copy { padding: 18px 16px 20px; }
 .popular-copy h3 { margin-bottom: 8px; font-size: 24px; }
 .popular-copy p, .destination-copy p, .section-intro, .contact-info p, .mission-copy p { margin-bottom: 0; color: var(--regal-navy); line-height: 1.5; }
-.black-band { height: 88px; background: var(--ink-black); }
+.black-band { display: none; }
 .destinations { padding-top: 52px; padding-bottom: 16px; }
 .section-intro { margin-bottom: 30px; font-size: 18px; }
 .destination-list { display: grid; gap: 24px; }
@@ -114,6 +114,6 @@ form .button { width: 100%; }
     form { padding: 20px; }
     input, textarea, select { min-height: 46px; }
     .contact-info { padding-top: 30px; }
-    .popular-grid { gap: 16px; }.popular-image { height: 150px; }.black-band { height: 56px; }
+    .popular-grid { gap: 16px; }.popular-image { height: 150px; }
     .stats { gap: 20px; }.stats strong { font-size: 26px; }
 }
