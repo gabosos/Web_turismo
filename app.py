@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ DESTINATIONS = [
         "description": "Templos milenarios, jardines zen y la energía creativa de Tokio.",
         "price": 2500,
         "duration": "10 días",
-        "image": "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1200&q=85",
+        "image": "pagoda-fondo-rosa-cielo-rosa-nieve-el_542777-176.avif",
     },
     {
         "id": "islandia",
@@ -21,7 +21,7 @@ DESTINATIONS = [
         "description": "Auroras boreales, géiseres y paisajes volcánicos en la tierra del hielo.",
         "price": 3200,
         "duration": "8 días",
-        "image": "https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=1200&q=85",
+        "image": "photo-1476610182048-b716b8518aae.avif",
     },
     {
         "id": "kenia",
@@ -30,7 +30,7 @@ DESTINATIONS = [
         "description": "Safaris inolvidables, la Gran Migración y culturas ancestrales.",
         "price": 2800,
         "duration": "9 días",
-        "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=85",
+        "image": "aerial-views-cape-town-south-africa-video-may-10-2021.webp",
     },
 ]
 
@@ -40,6 +40,11 @@ CONTACT_REQUESTS = []
 @app.get("/")
 def home():
     return render_template("index.html", destinations=DESTINATIONS)
+
+
+@app.get("/media/<path:filename>")
+def media(filename):
+    return send_from_directory("Image", filename)
 
 
 @app.get("/destinos")

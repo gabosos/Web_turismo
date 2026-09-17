@@ -31,7 +31,7 @@
                 <p>Viajes únicos a Japón, Islandia y África.<br>Reserva tu próxima aventura hoy.</p>
                 <a class="button" href="#contacto">Reservar viaje</a>
             </div>
-            <div class="image-frame hero-placeholder"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=85" alt="Vista nocturna de Tokio"></div>
+            <div class="image-frame hero-placeholder"><img src="{{ url_for('media', filename='photo-1488085061387-422e29b40080.avif') }}" alt="Avión listo para viajar"></div>
         </section>
 
         <section class="section-width popular" id="experiencias">
@@ -39,7 +39,7 @@
             <div class="popular-grid">
                 {% for destination in destinations %}
                 <article class="popular-card">
-                    <div class="image-frame popular-image"><img src="{{ destination.image }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
+                    <div class="image-frame popular-image"><img src="{{ url_for('media', filename=destination.image) }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
                     <div class="popular-copy"><h3>{{ destination.name if destination.id != 'kenia' else 'África' }}</h3><p>{{ destination.description }}</p></div>
                 </article>
                 {% endfor %}
@@ -53,7 +53,7 @@
             <div class="destination-list">
                 {% for destination in destinations %}
                 <article class="destination-row" id="{{ destination.id }}">
-                    <div class="image-frame destination-image"><img src="{{ destination.image }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
+                    <div class="image-frame destination-image"><img src="{{ url_for('media', filename=destination.image) }}" alt="Paisaje de {{ destination.name }}" loading="lazy"></div>
                     <div class="destination-copy"><h3>{{ destination.name }}{% if destination.id == 'kenia' %}, África{% endif %}</h3><p>{{ destination.description }}</p><strong>Desde ${{ '{:,.0f}'.format(destination.price) }}</strong></div>
                 </article>
                 {% endfor %}
@@ -64,7 +64,7 @@
         <section class="section-width about" id="nosotros">
             <h2>Quiénes somos</h2>
             <p class="section-intro">Somos una agencia de viajes apasionada por crear experiencias inolvidables.</p>
-            <div class="mission"><div class="image-frame mission-image"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=85" alt="Viajeros contemplando un paisaje" loading="lazy"></div><div class="mission-copy"><h3>Nuestra misión</h3><p>Desde 2010, hemos ayudado a miles de viajeros a descubrir los rincones más fascinantes del planeta.</p><div class="stats"><div><strong>5,000+</strong><span>Viajeros</span></div><div><strong>50+</strong><span>Destinos</span></div><div><strong>13</strong><span>Años</span></div></div></div></div>
+            <div class="mission"><div class="image-frame mission-image"><img src="{{ url_for('media', filename='photo-1504829857797-ddff29c27927.avif') }}" alt="Vista desde la ventana de un avión" loading="lazy"></div><div class="mission-copy"><h3>Nuestra misión</h3><p>Desde 2010, hemos ayudado a miles de viajeros a descubrir los rincones más fascinantes del planeta.</p><div class="stats"><div><strong>5,000+</strong><span>Viajeros</span></div><div><strong>50+</strong><span>Destinos</span></div><div><strong>13</strong><span>Años</span></div></div></div></div>
         </section>
         <div class="black-band"></div>
 
